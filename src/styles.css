@@ -4,19 +4,24 @@
    COLOUR white ground, maple red HUD field, star yellow for "you are here", Pacific teal for progress, a French blue accent; night ground #15110f
    TYPE Baloo 2 display + Be Vietnam Pro text, both with full Vietnamese glyphs
    LAYOUT laptop: red HUD, sticky tab bar, two-column views; phone: compact HUD, one column, tab bar fixed at the bottom */
-:root{color-scheme:light dark;
-  --bg:light-dark(#ffffff,#15110f);--ink:light-dark(#1d1512,#f5ede7);--mute:light-dark(#5f544e,#c2b6ad);--line:light-dark(#ecdfd7,#3b302b);--card:light-dark(#fff6f1,#201916);
-  --red:light-dark(#d7262e,#c6282f);--redbg:light-dark(#fde3e1,#3d1b1a);--yel:#ffc93c;--teal:light-dark(#0e8c97,#43c4ce);--onteal:light-dark(#ffffff,#06282b);--tbg:light-dark(#e1f4f5,#12302f);--lock:light-dark(#8e837c,#8c8179);
-  --blue:light-dark(#2453b8,#8fb0ff);--bbg:light-dark(#e9effc,#19243b);
-  --tierA:light-dark(#9fe0e4,#25666b);--tierB:light-dark(#f3c6b8,#6e4336);--askbg:light-dark(#fff1c7,#3b2f0f);--askink:light-dark(#7a5200,#ffd77a);--grow:light-dark(#b07800,#e3ac34);
+:root{color-scheme:light;
+  --bg:#ffffff;--ink:#1d1512;--mute:#5f544e;--line:#ecdfd7;--card:#fff6f1;
+  --red:#d7262e;--redbg:#fde3e1;--yel:#ffc93c;--teal:#0e8c97;--onteal:#ffffff;--tbg:#e1f4f5;--lock:#8e837c;
+  --blue:#2453b8;--bbg:#e9effc;
+  --tierA:#9fe0e4;--tierB:#f3c6b8;--askbg:#fff1c7;--askink:#7a5200;--grow:#b07800;
   --navh:66px}
-:root[data-theme=light]{color-scheme:light}
-:root[data-theme=dark]{color-scheme:dark}
-/* The player's own choice (Sáng/Tối) outranks the viewer's data-theme. */
-:root[data-app-theme=light]{color-scheme:light}
-:root[data-app-theme=dark]{color-scheme:dark}
+/* The theme button (Sáng / Tối / Theo máy) is resolved in script into data-app-theme.
+   Plain colours, not light-dark(): it works in every browser and claude.ai's own theme cannot override it. */
+:root[data-app-theme=light]{color-scheme:light !important}
+:root[data-app-theme=dark]{color-scheme:dark !important;
+  --bg:#15110f;--ink:#f5ede7;--mute:#c2b6ad;--line:#3b302b;--card:#201916;
+  --red:#c6282f;--redbg:#3d1b1a;--teal:#43c4ce;--onteal:#06282b;--tbg:#12302f;--lock:#8c8179;
+  --blue:#8fb0ff;--bbg:#19243b;
+  --tierA:#25666b;--tierB:#6e4336;--askbg:#3b2f0f;--askink:#ffd77a;--grow:#e3ac34}
+/* Outranks any background the host page puts on <html>, so overscroll areas match too. */
+:root[data-app-theme]{background:var(--bg) !important}
 *{box-sizing:border-box;min-width:0}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 "Be Vietnam Pro",system-ui,sans-serif;overflow-x:clip}
+body{margin:0;min-height:100vh;background:var(--bg);color:var(--ink);font:16px/1.55 "Be Vietnam Pro",system-ui,sans-serif;overflow-x:clip}
 h1,h2,h3{font-family:"Baloo 2","Be Vietnam Pro",sans-serif;line-height:1.05;letter-spacing:-.01em;margin:0;text-wrap:balance}
 h2{font-size:clamp(26px,3.4vw,36px);margin-bottom:6px}
 h3{font-size:21px;margin:18px 0 6px}

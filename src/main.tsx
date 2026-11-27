@@ -1,10 +1,10 @@
 import { createRoot } from 'react-dom/client';
 import App from './App';
 import './styles.css';
-import { applyTheme, loadTheme } from './lib/theme';
+import { initTheme } from './lib/theme';
 
 // Apply the saved light/dark choice before the first paint.
-applyTheme(loadTheme());
+initTheme();
 
 // The single-file build inlines this script in <head>; wait for the body before mounting.
 const mount = () => createRoot(document.getElementById('root')!).render(<App />);

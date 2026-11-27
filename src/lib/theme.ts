@@ -1,31 +1,46 @@
-export type ThemePref = 'auto' | 'light' | 'dark';
+export type ThemePref = 'light' | 'dark' | 'auto';
 
 const KEY = 'phuong-lifesim-theme';
-export const THEME_TXT: Record<ThemePref, string> = { auto: 'Tự động', light: 'Sáng', dark: 'Tối' };
-export const nextTheme = (t: ThemePref): ThemePref => (t === 'auto' ? 'light' : t === 'light' ? 'dark' : 'auto');
+export const THEME_TXT: Record<ThemePref, string> = { light: 'Sáng', dark: 'Tối', auto: 'Theo máy' };
+export const nextTheme = (t: ThemePref): ThemePref => (t === 'light' ? 'dark' : t === 'dark' ? 'auto' : 'light');
 
-/** The choice is a per-device convenience, so it lives in localStorage, not in the synced save. */
+/** Light unless the player picked otherwise. A per-device convenience, so it lives in localStorage. */
 export function loadTheme(): ThemePref {
   try {
     const v = localStorage.getItem(KEY);
-    return v === 'light' || v === 'dark' ? v : 'auto';
+    return v === 'dark' || v === 'auto' ? v : 'light';
   } catch {
-    return 'auto';
+    return 'light';
   }
 }
 
-/**
- * 'auto' follows the device (or the claude.ai viewer's data-theme).
- * 'light' / 'dark' set data-app-theme, which the stylesheet ranks above data-theme.
- */
-export function applyTheme(t: ThemePref) {
+let pref: ThemePref = 'light';
+
+/** 'auto' follows claude.ai's data-theme when the page runs there, otherwise the device setting. */
+function resolve(): 'light' | 'dark' {
+  if (pref !== 'auto') return pref;
+  const v = document.documentElement.getAttribute('data-theme');
+  if (v === 'light' || v === 'dark') return v;
+  return window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+}
+
+/** The stylesheet holds plain colours for each data-app-theme value, so no browser feature can override the choice. */
+function paint() {
+  const eff = resolve();
   const root = document.documentElement;
-  if (t === 'auto') root.removeAttribute('data-app-theme');
-  else root.setAttribute('data-app-theme', t);
-  try {
-    if (t === 'auto') localStorage.removeItem(KEY);
-    else localStorage.setItem(KEY, t);
-  } catch {
-    /* storage can be missing in some frames; the choice still applies until reload */
-  }
+  if (root.getAttribute('data-app-theme') !== eff) root.setAttribute('data-app-theme', eff);
+}
+
+export function applyTheme(t: ThemePref) {
+  pref = t;
+  paint();
+  try { localStorage.setItem(KEY, t); } catch { /* storage can be missing in some frames */ }
+}
+
+/** Call once before the first render. Repaints when the device or the claude.ai viewer changes theme. */
+export function initTheme() {
+  pref = loadTheme();
+  paint();
+  window.matchMedia?.('(prefers-color-scheme: dark)').addEventListener?.('change', paint);
+  new MutationObserver(paint).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 }

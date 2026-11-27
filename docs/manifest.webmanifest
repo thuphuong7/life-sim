@@ -1,0 +1,12 @@
+{
+  "name": "Phương Life Sim",
+  "short_name": "Life Sim",
+  "description": "Gamified life-plan tracker with a TCF Canada French tracker",
+  "lang": "vi",
+  "start_url": "./#today",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#d7262e",
+  "icons": [{ "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }]
+}

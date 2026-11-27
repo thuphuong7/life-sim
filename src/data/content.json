@@ -1,0 +1,772 @@
+{
+ "QUESTS": [
+  {
+   "id": "m1",
+   "g": "main",
+   "t": "Bắt đầu ca thợ bánh ở JJ Bean",
+   "d": "Thứ 3–5, 5:00–13:00, từ tuần 07/12/2026. Thợ bánh là NOC 63202; chữ số thứ hai là 3 nên đây là TEER 3, mỗi giờ đều tính cho CEC. Giữ phiếu lương; sau này xin thư xác nhận ghi rõ nhiệm vụ làm bột và nướng bánh.",
+   "due": "07/12/2026",
+   "xp": 150
+  },
+  {
+   "id": "m2",
+   "g": "main",
+   "t": "Thêm nửa ca thứ 6 ở JJ Bean (lên ~28 giờ/tuần)",
+   "d": "CEC tính tối đa 30 giờ/tuần và cộng được nhiều job. 24 giờ/tuần thì đủ 1.560 giờ khoảng 03/2028. Thêm nửa ca thứ 6 (4 giờ) là khoảng 28 giờ/tuần, đủ sớm hơn khoảng 2 tháng, tầm 01/2028.",
+   "due": "xin ngay trong 12/2026",
+   "xp": 150
+  },
+  {
+   "id": "m3",
+   "g": "main",
+   "t": "Thi lại tiếng Anh: CELPIP General",
+   "d": "IELTS 07/2025 hết hạn khoảng 07/2027. Phí khoảng $290–299 + thuế. Nhắm CLB 9 cả 4 kỹ năng: Nghe 7 → 9 là phần cần tăng nhiều nhất.",
+   "due": "trước 05/2027",
+   "xp": 200
+  },
+  {
+   "id": "m4",
+   "g": "main",
+   "t": "Đặt chỗ thi TCF Canada",
+   "d": "Ashton Testing ở Vancouver thu $395 cho cả 4 phần. AF Victoria thu $390 và các buổi tháng 11/2026 đều đã hết chỗ; đăng ký thường mở 2–2,5 tháng trước ngày thi. Đặt khoảng 07–08/2027 cho kỳ thi 10–11/2027.",
+   "due": "07/2027",
+   "xp": 60
+  },
+  {
+   "id": "m5",
+   "g": "main",
+   "t": "Tiếng Pháp NCLC 7 cả 4 kỹ năng (TCF Canada)",
+   "d": "Cần Nghe ≥ 458, Đọc ≥ 453, Viết ≥ 10/20, Nói ≥ 10/20. Năm 2026 các đợt rút nhóm tiếng Pháp lấy từ 391 đến 435 điểm; ước tính của bạn khi có NCLC 7 là khoảng 448. Kết quả có sau khoảng 15 ngày làm việc và còn hạn 2 năm.",
+   "due": "11/2027",
+   "xp": 400
+  },
+  {
+   "id": "m6",
+   "g": "main",
+   "t": "Đủ 1.560 giờ TEER 0–3 trong 3 năm gần nhất",
+   "d": "Tự tính ở bảng ghi giờ. Barista và server không cộng vào đây.",
+   "due": "~01/2028 nếu 28 giờ/tuần",
+   "xp": 300
+  },
+  {
+   "id": "m7",
+   "g": "main",
+   "t": "Tạo hồ sơ Express Entry",
+   "d": "Cần giờ CEC đủ, điểm tiếng Anh còn hạn và kết quả TCF Canada còn hạn.",
+   "due": "đầu 2028",
+   "xp": 200
+  },
+  {
+   "id": "m8",
+   "g": "main",
+   "t": "Nhận ITA, nộp PR, xin bridging work permit",
+   "d": "Nộp PR trước khi work permit hết hạn để còn xin được bridging work permit.",
+   "due": "2028",
+   "xp": 400
+  },
+  {
+   "id": "m9",
+   "g": "main",
+   "t": "Thành thường trú nhân (PR)",
+   "d": "Mở khoá: Future Skills Grant, học phí domestic, HCAP, lớp WorkBC theo dự án.",
+   "due": "trước 06/03/2029",
+   "xp": 600
+  },
+  {
+   "id": "m10",
+   "g": "main",
+   "t": "Nộp quốc tịch Canada",
+   "d": "Cần 1.095 ngày trong 5 năm. Mỗi ngày ở Canada trước PR tính nửa ngày, tối đa 365 ngày, nên có thể chỉ cần khoảng 2 năm sau PR.",
+   "due": "khoảng 2030–31",
+   "xp": 800
+  },
+  {
+   "id": "s1",
+   "g": "side",
+   "t": "Làm thẻ thư viện VPL",
+   "d": "Mở khoá miễn phí LinkedIn Learning (có chứng chỉ từng khoá), Mango Languages; kèm app Mauril của CBC/Radio-Canada để luyện nghe tiếng Pháp.",
+   "due": "thứ 2 tới",
+   "xp": 40
+  },
+  {
+   "id": "s2",
+   "g": "side",
+   "t": "Đăng ký BC Newcomer Services",
+   "d": "MOSAIC, SUCCESS hoặc ISSofBC. Miễn phí cho người có work permit: workshop thị trường lao động, mentor, networking. Đi vào thứ 2 hoặc thứ 6.",
+   "due": "12/2026",
+   "xp": 60
+  },
+  {
+   "id": "s3",
+   "g": "side",
+   "t": "Hẹn intake ở WorkBC Commercial",
+   "d": "Đã email ngày 26/11. Khi gặp, nói rõ bạn đang làm part-time và muốn hỏi về tài trợ học nghề.",
+   "due": "12/2026",
+   "xp": 50
+  },
+  {
+   "id": "s4",
+   "g": "side",
+   "t": "Xin Coursera Financial Aid cho MedCerts MOA",
+   "d": "Duyệt khoảng 15 ngày. Học chiều thứ 3–5, mỗi buổi 45 phút.",
+   "due": "12/2026",
+   "xp": 120
+  },
+  {
+   "id": "s5",
+   "g": "side",
+   "t": "Claude Certified Associate (CCAO-F)",
+   "d": "Học miễn phí ở Anthropic Academy, thi US$99. Đi cùng portfolio AI automation của bạn.",
+   "due": "Q1/2027",
+   "xp": 150
+  },
+  {
+   "id": "s6",
+   "g": "side",
+   "t": "QuickBooks Online ProAdvisor",
+   "d": "Miễn phí. Kỹ năng sổ sách làm từ xa ở đâu cũng được, dùng luôn cho quầy bánh mì.",
+   "due": "Q1/2027",
+   "xp": 100
+  },
+  {
+   "id": "s7",
+   "g": "side",
+   "t": "Một Microsoft Applied Skills về AI",
+   "d": "Bài thi dạng lab, miễn phí, khoảng 2 giờ.",
+   "due": "Q2/2027",
+   "xp": 80
+  },
+  {
+   "id": "s8",
+   "g": "side",
+   "t": "Red Cross Psychological First Aid (online)",
+   "d": "45–90 phút, có chứng nhận. Hợp với các việc chăm sóc và y tế.",
+   "due": "Q2/2027",
+   "xp": 30
+  },
+  {
+   "id": "b1",
+   "g": "biz",
+   "t": "MarketSafe Online",
+   "d": "$55, khoảng 6 giờ, làm trong 10 ngày. Khoá an toàn thực phẩm cho người bán ở chợ và hội chợ.",
+   "due": "trước 03/2027",
+   "xp": 60
+  },
+  {
+   "id": "b2",
+   "g": "biz",
+   "t": "HubSpot Inbound hoặc Social Media",
+   "d": "Miễn phí. Marketing cho quầy, cũng hợp với job marketing assistant.",
+   "due": "Q1/2027",
+   "xp": 60
+  },
+  {
+   "id": "b3",
+   "g": "biz",
+   "t": "Một buổi Small Business BC",
+   "d": "Hỏi advisor về giấy phép bán ở hội chợ và bếp thương mại. Có tháng webinar miễn phí.",
+   "due": "Q1/2027",
+   "xp": 40
+  },
+  {
+   "id": "b4",
+   "g": "biz",
+   "t": "Chọn 3 hội chợ 2027 và một bếp thương mại",
+   "d": "Đồ ăn phải làm trong bếp có giấy phép.",
+   "due": "03/2027",
+   "xp": 80
+  },
+  {
+   "id": "l1",
+   "g": "life",
+   "t": "6–8 buổi học lái bằng tiếng Việt",
+   "d": "Thứ 2 hoặc thứ 6 trong tháng 12.",
+   "due": "12/2026",
+   "xp": 60
+  },
+  {
+   "id": "l2",
+   "g": "life",
+   "t": "Thi road test Class 5",
+   "d": "Đổi ngày thi khỏi thứ 3 vì trùng ca làm.",
+   "due": "đầu 2027",
+   "xp": 150
+  },
+  {
+   "id": "l3",
+   "g": "life",
+   "t": "Quỹ khẩn cấp $7.500",
+   "d": "Theo bảng tiết kiệm trong Kế hoạch v1.3.",
+   "due": "05/2027",
+   "xp": 200
+  },
+  {
+   "id": "l4",
+   "g": "life",
+   "t": "Lên giường trước 20:30 các tối thứ 2–4",
+   "d": "Ca 5:00 ở North Van nghĩa là dậy khoảng 3:45. Bạn cần 8–10 tiếng ngủ.",
+   "due": "mỗi tuần",
+   "xp": 20
+  }
+ ],
+ "LOOT": [
+  {
+   "tier": "S",
+   "n": "Thẻ thư viện VPL",
+   "c": "$0",
+   "f": "Online, tự học",
+   "fit": "Chiều thứ 3–5",
+   "el": "ok",
+   "elt": "Ai sống ở Vancouver cũng làm thẻ được",
+   "u": "LinkedIn Learning có chứng chỉ từng khoá; Mango Languages để luyện tiếng Pháp",
+   "h": "https://vpl.ca/digital-library/linkedin-learning-faq",
+   "free": true,
+   "on": true
+  },
+  {
+   "tier": "S",
+   "n": "BC Newcomer Services Program",
+   "c": "$0",
+   "f": "Gặp trực tiếp hoặc online, giờ hành chính",
+   "fit": "Thứ 2 hoặc thứ 6",
+   "el": "ok",
+   "elt": "Dành cho người có work permit",
+   "u": "Workshop thị trường lao động, mentor, networking, hỗ trợ tìm việc",
+   "h": "https://mosaicbc.org/our-programs/settlement-support-for-temporary-residents/",
+   "free": true,
+   "on": false
+  },
+  {
+   "tier": "S",
+   "n": "WorkBC Employment Services",
+   "c": "$0",
+   "f": "Gặp trực tiếp",
+   "fit": "Thứ 2 hoặc thứ 6",
+   "el": "ask",
+   "elt": "Cần được phép làm việc và đang thất nghiệp hoặc làm ít giờ. Tài trợ học xét từng người",
+   "u": "Tư vấn nghề, có thể tài trợ học phí",
+   "h": "https://www.workbc.ca/Employment-Services/WorkBC-Centres/Employment-Services/Employment-Services-Eligibility.aspx",
+   "free": true,
+   "on": false
+  },
+  {
+   "tier": "S",
+   "n": "Coursera Financial Aid",
+   "c": "$0 khi được duyệt",
+   "f": "Online, tự học",
+   "fit": "Chiều thứ 3–5",
+   "el": "ok",
+   "elt": "Ai cũng nộp được; duyệt khoảng 15 ngày",
+   "u": "MedCerts MOA, Google AI Essentials, Google Project Management",
+   "h": "https://www.coursera.org/specializations/medical-office-procedures-and-administration-fundamentals",
+   "free": true,
+   "on": true
+  },
+  {
+   "tier": "S",
+   "n": "Mauril (CBC/Radio-Canada)",
+   "c": "$0",
+   "f": "App điện thoại",
+   "fit": "15–30 phút mỗi ngày",
+   "el": "ok",
+   "elt": "Ai ở Canada cũng dùng được",
+   "u": "Luyện nghe tiếng Pháp bằng chương trình thật của Radio-Canada",
+   "h": "https://www.mauril.ca/en/why-mauril/",
+   "free": true,
+   "on": true
+  },
+  {
+   "tier": "S",
+   "n": "QuickBooks Online ProAdvisor",
+   "c": "$0",
+   "f": "Online, tự học",
+   "fit": "Thứ 6",
+   "el": "ok",
+   "elt": "Tạo tài khoản QuickBooks Online Accountant miễn phí",
+   "u": "Chứng chỉ phần mềm kế toán; làm sổ sách từ xa",
+   "h": "https://quickbooks.intuit.com/ca/accountants/proadvisor/",
+   "free": true,
+   "on": true
+  },
+  {
+   "tier": "S",
+   "n": "Microsoft Applied Skills",
+   "c": "$0",
+   "f": "Bài thi lab online 2 giờ",
+   "fit": "Thứ 6",
+   "el": "ok",
+   "elt": "Chỉ cần tài khoản Microsoft Learn",
+   "u": "Credential AI và văn phòng của Microsoft",
+   "h": "https://learn.microsoft.com/credentials",
+   "free": true,
+   "on": true
+  },
+  {
+   "tier": "S",
+   "n": "HubSpot Academy",
+   "c": "$0",
+   "f": "Online, tự học",
+   "fit": "Chiều thứ 3–5",
+   "el": "ok",
+   "elt": "Ai cũng học được",
+   "u": "Chứng chỉ marketing; dùng cho quầy bánh mì",
+   "h": "https://academy.hubspot.com/enroll-in-hubspot-academy",
+   "free": true,
+   "on": true
+  },
+  {
+   "tier": "A",
+   "n": "CELPIP General",
+   "c": "~$290–299 + thuế",
+   "f": "Thi 1 buổi khoảng 3 giờ",
+   "fit": "Thứ 2 hoặc thứ 6",
+   "el": "ok",
+   "elt": "Ai cũng thi được",
+   "u": "Điểm tiếng Anh mới cho Express Entry",
+   "h": "https://www.celpip.ca/area/metro-vancouver",
+   "free": false,
+   "on": false
+  },
+  {
+   "tier": "A",
+   "n": "TCF Canada",
+   "c": "$395",
+   "f": "Thi 1 ngày, 2 giờ 47 phút",
+   "fit": "Thứ 2 hoặc thứ 6",
+   "el": "ok",
+   "elt": "Ai cũng thi được; đăng ký mở 2–2,5 tháng trước",
+   "u": "Mở nhóm rút tiếng Pháp của Express Entry",
+   "h": "https://ashtontesting.ca/?p=280190",
+   "free": false,
+   "on": false
+  },
+  {
+   "tier": "A",
+   "n": "Claude Certified Associate",
+   "c": "US$99",
+   "f": "Thi online có giám sát, 120 phút",
+   "fit": "Thứ 6",
+   "el": "ok",
+   "elt": "Ai cũng thi được; khoá học miễn phí",
+   "u": "Chứng chỉ dùng AI trong công việc",
+   "h": "https://anthropic-partners.skilljar.com/page/faq-certifications",
+   "free": false,
+   "on": true
+  },
+  {
+   "tier": "A",
+   "n": "MarketSafe Online",
+   "c": "$55",
+   "f": "Online, khoảng 6 giờ",
+   "fit": "Thứ 6",
+   "el": "ok",
+   "elt": "Ai cũng học được",
+   "u": "An toàn thực phẩm cho người bán ở chợ và hội chợ",
+   "h": "https://openschool.bc.ca/marketsafe",
+   "free": false,
+   "on": true
+  },
+  {
+   "tier": "A",
+   "n": "Red Cross Psychological First Aid",
+   "c": "$0–20",
+   "f": "Online 45–90 phút",
+   "fit": "Chiều thứ 3–5",
+   "el": "ok",
+   "elt": "Miễn phí cho 1.000 người đầu tiên",
+   "u": "Chứng nhận sơ cứu tâm lý",
+   "h": "https://redcross.ca/pfa",
+   "free": true,
+   "on": true
+  },
+  {
+   "tier": "A",
+   "n": "Kỳ thi NHA CMAA",
+   "c": "~US$117",
+   "f": "Thi online hoặc ở trung tâm",
+   "fit": "Thứ 6",
+   "el": "ask",
+   "elt": "Đang chờ NHA xác nhận khoá Coursera có đủ điều kiện không",
+   "u": "Chứng chỉ MOA của Mỹ; ở BC không bắt buộc",
+   "h": "https://www.nhanow.com",
+   "free": false,
+   "on": true
+  },
+  {
+   "tier": "B",
+   "n": "Langara MOA Short Certificate",
+   "c": "$1.370 + ~$130 sách",
+   "f": "Online buổi tối 18:30–21:30",
+   "fit": "Trùng giờ ngủ trước ca 5:00",
+   "el": "ask",
+   "elt": "Đang chờ Langara trả lời về work permit",
+   "u": "Chứng chỉ MOA của trường ở BC",
+   "h": "https://langara.ca/programs-courses/medical-office-administrator-moa-short-certificate",
+   "free": false,
+   "on": true
+  },
+  {
+   "tier": "B",
+   "n": "University of the People",
+   "c": "US$160/môn; cả bằng ~US$6.500–7.300",
+   "f": "Online, theo kỳ",
+   "fit": "Sau khi có PR",
+   "el": "ok",
+   "elt": "Nhận sinh viên toàn cầu",
+   "u": "Bằng cử nhân online (Business, Health Science, CS)",
+   "h": "https://www.uopeople.edu/tuition-free/fees/",
+   "free": false,
+   "on": true
+  },
+  {
+   "tier": "B",
+   "n": "ECE Assistant (1 môn)",
+   "c": "$700 domestic / ~$3.000 international",
+   "f": "Online",
+   "fit": "Sau khi có PR thì rẻ hơn nhiều",
+   "el": "ask",
+   "elt": "Người có PGWP thường bị tính học phí international",
+   "u": "Việc trợ giảng mầm non NOC 42202 (TEER 2)",
+   "h": "https://www.educationplannerbc.ca/institutions/university-of-british-columbia/539E2475-0215-44C3-A4D0-EA806CF9AB9F/programs/UBCV-bc-early-childhood-education-assistant-certificate",
+   "free": false,
+   "on": true
+  },
+  {
+   "tier": "L",
+   "n": "StrongerBC Future Skills Grant",
+   "c": "Tới $3.500",
+   "f": "Trả học phí khoá ngắn",
+   "fit": "—",
+   "el": "lock",
+   "elt": "Chỉ cho công dân, PR, protected person",
+   "u": "Langara MOA gần như miễn phí",
+   "h": "https://www.workbc.ca/find-loans-and-grants/students-and-adult-learners/strongerbc-future-skills-grant/eligibility-criteria",
+   "free": true,
+   "on": false
+  },
+  {
+   "tier": "L",
+   "n": "HCAP: học Health Care Assistant có lương",
+   "c": "Có lương + trợ cấp",
+   "f": "Vừa làm vừa học",
+   "fit": "—",
+   "el": "lock",
+   "elt": "Chỉ cho công dân hoặc PR",
+   "u": "Nghề chăm sóc người lớn tuổi",
+   "h": "https://www.northernhealth.ca/sites/northern_health/files/health-professionals/student-practice-education/documents/health-career-access-program-ltc-faqs.pdf",
+   "free": true,
+   "on": false
+  },
+  {
+   "tier": "L",
+   "n": "Lớp WorkBC theo dự án (như Dan’s Legacy)",
+   "c": "$0",
+   "f": "Toàn thời gian ban ngày",
+   "fit": "Trùng ca JJ Bean",
+   "el": "lock",
+   "elt": "Người tạm trú thường không đủ điều kiện",
+   "u": "Học nghề + thực tập",
+   "h": "https://workbc.ca/sites/default/files/2024-09/Community%20Response%20Stream_Final_Sept12_2024.pdf",
+   "free": true,
+   "on": false
+  },
+  {
+   "tier": "L",
+   "n": "Riipen Level UP",
+   "c": "Được trả $1.400/dự án",
+   "f": "Dự án online 60–80 giờ",
+   "fit": "—",
+   "el": "lock",
+   "elt": "Chỉ cho sinh viên; work permit không đủ điều kiện",
+   "u": "Kinh nghiệm làm dự án có trả tiền",
+   "h": "https://georgebrown.ca/media/riipen-level-up-faqs",
+   "free": true,
+   "on": true
+  }
+ ],
+ "TREE": [
+  {
+   "b": "Ngôn ngữ",
+   "n": [
+    [
+     "Tiếng Việt (bản ngữ)",
+     "have",
+     3
+    ],
+    [
+     "Tiếng Anh, IELTS Đọc 8.5",
+     "have",
+     3
+    ],
+    [
+     "Tiếng Pháp A2 → NCLC 7",
+     "grow",
+     3
+    ]
+   ]
+  },
+  {
+   "b": "Bếp và cà phê",
+   "n": [
+    [
+     "Barista, phục vụ",
+     "have",
+     3
+    ],
+    [
+     "Thợ bánh TEER 3",
+     "grow",
+     3
+    ],
+    [
+     "FOODSAFE L1, Serving It Right",
+     "have",
+     1
+    ],
+    [
+     "MarketSafe",
+     "next",
+     1
+    ]
+   ]
+  },
+  {
+   "b": "Văn phòng",
+   "n": [
+    [
+     "Trợ lý CEO, admin",
+     "have",
+     2
+    ],
+    [
+     "MOA, thuật ngữ y khoa",
+     "next",
+     2
+    ],
+    [
+     "QuickBooks",
+     "next",
+     3
+    ]
+   ]
+  },
+  {
+   "b": "Công nghệ và AI",
+   "n": [
+    [
+     "React, TypeScript, Node",
+     "have",
+     3
+    ],
+    [
+     "AI automation (n8n, Gemini)",
+     "grow",
+     3
+    ],
+    [
+     "Claude Certified Associate",
+     "next",
+     3
+    ]
+   ]
+  },
+  {
+   "b": "Chăm sóc",
+   "n": [
+    [
+     "Phiên dịch y tế",
+     "have",
+     2
+    ],
+    [
+     "Standard First Aid",
+     "have",
+     1
+    ],
+    [
+     "Psychological First Aid",
+     "next",
+     2
+    ]
+   ]
+  },
+  {
+   "b": "Đời sống",
+   "n": [
+    [
+     "Lái xe Class 5",
+     "grow",
+     3
+    ],
+    [
+     "Ngân sách dưới $1.500/tháng",
+     "grow",
+     3
+    ],
+    [
+     "Gym 2–3 buổi, 7.000 bước",
+     "have",
+     3
+    ]
+   ]
+  }
+ ],
+ "SRC": [
+  [
+   "IRCC: cách tính 1.560 giờ CEC",
+   "https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/become-candidate/eligibility/canadian-experience-class.html"
+  ],
+  [
+   "Job Bank: Bakers (NOC 63202)",
+   "https://www.jobbank.gc.ca/marketreport/occupation/22246/BC"
+  ],
+  [
+   "Đợt rút tiếng Pháp 06/08/2026: 391 điểm",
+   "https://immigration.ca/canada-invites-5000-french-speaking-candidates-express-entry-crs-391-august-6-2026/"
+  ],
+  [
+   "IRCC: điều kiện quốc tịch",
+   "https://www.canada.ca/en/immigration-refugees-citizenship/services/canadian-citizenship/become-canadian-citizen/check-eligibility.html"
+  ],
+  [
+   "Giới hạn tuổi IEC theo nước",
+   "https://www.cicnews.com/2025/08/youth-from-these-countries-can-get-lmia-exempt-work-permits-0858582.html"
+  ],
+  [
+   "IRCC: working holiday Úc, 18–35 tuổi",
+   "https://www.canada.ca/en/immigration-refugees-citizenship/services/canadians/international-experience-canada/work-travel-australia.html"
+  ],
+  [
+   "BC: PGWP trả học phí international",
+   "https://www2.gov.bc.ca/assets/gov/education/post-secondary-education/institution-resources-administration/public_post-secondary_international_student_enrolment_guidelines.pdf"
+  ],
+  [
+   "BC PNP: các đợt mời 2026",
+   "https://www.welcomebc.ca/immigrate-to-b-c/invitations-to-apply"
+  ],
+  [
+   "SUCCESS: BC Newcomer Services Program",
+   "https://successbc.ca/bcsis"
+  ],
+  [
+   "Small Business BC",
+   "https://smallbusinessbc.ca"
+  ],
+  [
+   "Sách 《高性价比人生指南》",
+   "https://github.com/eternity4719/HowToLiveBetter"
+  ],
+  [
+   "France Éducation international: TCF Canada",
+   "https://www.france-education-international.fr/test/tcf-canada"
+  ],
+  [
+   "IRCC: bảng quy đổi TCF Canada sang NCLC",
+   "https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/work/after-graduation/eligibility/language-results.html"
+  ],
+  [
+   "Ashton Testing: TCF Canada ở Vancouver",
+   "https://ashtontesting.ca/?p=280190"
+  ],
+  [
+   "Alliance Française Victoria: lịch thi TCF Canada",
+   "https://www.afvictoria.ca/language/exams/tcf/"
+  ],
+  [
+   "Số giờ học theo trình độ (Alliance Française)",
+   "https://stokenewingtonschool.co.uk/asset/1763/download"
+  ],
+  [
+   "Apple: tự động hoá cá nhân trong Phím tắt",
+   "https://support.apple.com/guide/shortcuts/apd690170742/ios"
+  ],
+  [
+   "MacroDroid: trigger Screen Unlocked",
+   "https://macrodroidforum.com/wiki/index.php/Trigger:_Screen_Unlocked"
+  ]
+ ],
+ "ACH": [
+  [
+   "Tốt nghiệp BCIT loại giỏi",
+   "CST Diploma, 05/2025",
+   1
+  ],
+  [
+   "IELTS Đọc 8.5",
+   "07/2025",
+   1
+  ],
+  [
+   "FOODSAFE Level 1",
+   "11/2026",
+   1
+  ],
+  [
+   "Serving It Right",
+   "Đã có",
+   1
+  ],
+  [
+   "Standard First Aid",
+   "Đã có",
+   1
+  ],
+  [
+   "Bằng lái Class 5L",
+   "18/11/2026",
+   1
+  ],
+  [
+   "Offer thợ bánh JJ Bean",
+   "11/2026",
+   1
+  ],
+  [
+   "Song ngữ Việt–Anh",
+   "Phiên dịch y tế",
+   1
+  ],
+  [
+   "CLB 9 cả 4 kỹ năng",
+   "Khoá",
+   0,
+   "m3"
+  ],
+  [
+   "NCLC 7 tiếng Pháp",
+   "Khoá",
+   0,
+   "m5"
+  ],
+  [
+   "1.560 giờ CEC",
+   "Khoá",
+   0,
+   "m6"
+  ],
+  [
+   "Road test Class 5",
+   "Khoá",
+   0,
+   "l2"
+  ],
+  [
+   "Nhận ITA",
+   "Khoá",
+   0,
+   "m8"
+  ],
+  [
+   "Thường trú nhân",
+   "Khoá",
+   0,
+   "m9"
+  ],
+  [
+   "Hộ chiếu Canada",
+   "Khoá",
+   0,
+   "m10"
+  ]
+ ]
+}

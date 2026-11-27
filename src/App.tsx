@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import type { Entry, Pending, Save } from './types';
-import { Hud } from './components/Hud';
+import { Avatar, Hud } from './components/Hud';
 import { Icon } from './components/ui';
 import { Submit } from './components/Submit';
 import { useStore } from './lib/store';
@@ -76,6 +76,10 @@ export default function App() {
   const ask = (p: Pending) => setPending(p);
   const confirm = (e: Entry) => { confirmed.current = true; update((x: Save) => applyEntry(x, e)); setPending(null); };
   const revert = (id: string) => update((x: Save) => revertEntry(x, id));
+
+  if (!store.ready) {
+    return <div className="loading" role="status"><Avatar />Đang tải tiến độ…</div>;
+  }
 
   return (
     <>

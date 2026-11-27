@@ -9,6 +9,8 @@ import { blank, connectRemote, loadLocal, saveLocal, type Remote, type SyncStatu
 export function useStore() {
   const [s, setS] = useState<Save>(() => loadLocal() ?? blank());
   const [sync, setSync] = useState<SyncStatus>('local');
+  // Standalone: data is on the device, ready at once. claude.ai: wait for local data or the first answer from the db.
+  const [ready, setReady] = useState(() => !__ARTIFACT__ || loadLocal() !== null);
   const remote = useRef<Remote | null>(null);
   const dirty = useRef(false);
   const cur = useRef(s);
@@ -19,7 +21,11 @@ export function useStore() {
       const local = cur.current;
       if (local.updated === '' || r.updated > local.updated) setS(r);
       else if (local.updated > r.updated) remote.current?.push(local);
-    }, setSync);
+      setReady(true);
+    }, (st) => {
+      setSync(st);
+      if (st !== 'connecting' && st !== 'saving') setReady(true);
+    });
   }, []);
 
   useEffect(() => {
@@ -45,5 +51,5 @@ export function useStore() {
     setS({ ...n, updated: new Date().toISOString() });
   }, []);
 
-  return { s, update, replace, sync };
+  return { s, update, replace, sync, ready };
 }

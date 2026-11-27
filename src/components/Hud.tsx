@@ -1,8 +1,23 @@
+import { useState } from 'react';
 import type { Save } from '../types';
 import { CEC_H, PERMIT, PLAYER } from '../data/plan';
 import { cecDate, frDate, frHours, streak, sumTeer } from '../lib/calc';
 import { daysUntil, fmtMY } from '../lib/dates';
+import { THEME_TXT, applyTheme, loadTheme, nextTheme, type ThemePref } from '../lib/theme';
 import { Icon } from './ui';
+
+const THEME_ICON: Record<ThemePref, string> = { auto: 'auto', light: 'today', dark: 'moon' };
+
+/** Cycles Tự động → Sáng → Tối. */
+function ThemeToggle() {
+  const [t, setT] = useState<ThemePref>(loadTheme);
+  const change = () => { const n = nextTheme(t); applyTheme(n); setT(n); };
+  return (
+    <button type="button" className="themebtn" onClick={change} aria-label={`Giao diện: ${THEME_TXT[t]}. Bấm để đổi sang ${THEME_TXT[nextTheme(t)]}`}>
+      <Icon n={THEME_ICON[t]} />{THEME_TXT[t]}
+    </button>
+  );
+}
 
 const nf = (n: number) => Math.round(n).toLocaleString('vi-VN');
 
@@ -31,7 +46,7 @@ export function Hud({ s, xp }: { s: Save; xp: number }) {
         <div className="who">
           <Avatar />
           <div>
-            <h1>{PLAYER}</h1>
+            <div className="namerow"><h1>{PLAYER}</h1><ThemeToggle /></div>
             <p className="lvl">
               {nf(xp)} XP từ {proven} việc đã nộp bằng chứng
               {st > 0 && <span className="streak"><Icon n="flame" />{st} ngày liền học tiếng Pháp</span>}

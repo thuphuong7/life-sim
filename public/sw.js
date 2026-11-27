@@ -1,6 +1,6 @@
 // Network first, cache as fallback: the app keeps working offline with the last version it saw.
-const CACHE = 'life-sim-v2';
-const SHELL = ['./', './index.html', './manifest.webmanifest', './icon.svg'];
+const CACHE = 'life-sim-v3';
+const SHELL = ['./', './index.html', './manifest.webmanifest', './icon.svg', './icon-192.png', './apple-touch-icon.png'];
 
 self.addEventListener('install', (e) => {
   self.skipWaiting();

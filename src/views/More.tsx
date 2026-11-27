@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import type { Save, Update } from '../types';
-import { ACH, APP_URL, CASH_BY, CASH_GOAL, GMQ, RULES, SRC, TREE, WEEK } from '../data/plan';
+import { ACH, CASH_BY, CASH_GOAL, GMQ, RULES, SRC, TREE, WEEK } from '../data/plan';
 import { SKILLS } from '../data/french';
 import { achievements } from '../lib/calc';
 import { blank, migrate, SYNC_TXT, type SyncStatus } from '../lib/storage';
@@ -60,39 +60,39 @@ function Treasure({ s, update }: { s: Save; update: Update }) {
   );
 }
 
+const WEB_URL = 'https://thuphuong7.github.io/life-sim/';
+
 function Phone() {
-  const base = __ARTIFACT__ ? APP_URL : location.href.split('#')[0];
-  const url = `${base}#focus`;
+  const base = __ARTIFACT__ ? WEB_URL : location.href.split('#')[0];
+  const focus = `${base}#focus`;
   const [copied, setCopied] = useState('');
-  const copy = async () => {
-    try { await navigator.clipboard.writeText(url); setCopied('Đã chép link.'); } catch { setCopied('Trình duyệt chặn chép; bấm giữ vào link để chép tay.'); }
+  const copy = async (u: string) => {
+    try { await navigator.clipboard.writeText(u); setCopied('Đã chép link.'); } catch { setCopied('Trình duyệt chặn chép; bấm giữ vào link để chép tay.'); }
   };
   return (
     <div className="gmgrid">
       <div>
-        <h3 className="first">iPhone: app Phím tắt (Shortcuts)</h3>
+        <h3 className="first">Đưa app ra màn hình chính</h3>
+        <p><b>iPhone</b>, dùng app Phím tắt để icon mở bằng Safari, chung dữ liệu với pop-up:</p>
         <ol className="steps">
-          <li>Mở <b>Phím tắt</b> → tab <b>Tự động hoá</b> (Automation) → <b>+</b> → <b>Ứng dụng</b> (App).</li>
-          <li>Chọn các app bạn hay mở để lướt (Instagram, TikTok, YouTube, Facebook…), chọn <b>Được mở</b> (Is Opened) và <b>Chạy ngay lập tức</b> (Run Immediately).</li>
-          <li>Thêm tác vụ <b>Chọn từ menu</b> (Choose from Menu), lời nhắc “Có việc gấp không?”, hai mục “Có, việc gấp” và “Không gấp”.</li>
-          <li>Dưới “Không gấp”, thêm <b>Mở URL</b> (Open URLs) với link bên dưới. Dưới “Có, việc gấp” để trống.</li>
+          <li>Phím tắt (Shortcuts) → <b>+</b> → thêm tác vụ <b>Mở URL</b> (Open URLs) với link app bên dưới, đặt tên “Life Sim”.</li>
+          <li>Mở menu của phím tắt → <b>Thêm vào MH chính</b> (Add to Home Screen).</li>
+          <li>Muốn widget: giữ màn hình chính → <b>+</b> → <b>Phím tắt</b> → chọn ô Life Sim.</li>
         </ol>
-        <p className="small">iPhone không có trigger “mở khoá màn hình”, nên pop-up bật khi bạn mở các app đã chọn.</p>
+        <p><b>Android</b>: mở link app bằng Chrome → menu ⋮ → <b>Cài đặt ứng dụng</b> (Install app). App mở toàn màn hình và chạy được khi offline.</p>
+        <p className="small">Web app không làm được widget hiện số liệu như app thật; widget ở đây là một nút mở nhanh.</p>
       </div>
       <div>
-        <h3 className="first">Android: app MacroDroid (bản miễn phí)</h3>
-        <ol className="steps">
-          <li>Cài MacroDroid → <b>Add Macro</b>.</li>
-          <li>Trigger: <b>Screen Unlocked</b>, chạy mỗi lần mở khoá máy.</li>
-          <li>Action: <b>If Confirmed Then</b>, tiêu đề “Có việc gấp không?”; nút đồng ý “Không gấp, vào Life Sim”, nút huỷ “Có, việc gấp”.</li>
-          <li>Bên trong khối đó thêm <b>Open Website</b> với link bên dưới.</li>
-        </ol>
+        <h3 className="first">Pop-up “Có việc gấp không?”</h3>
+        <p><b>iPhone</b>: Phím tắt → Tự động hoá (Automation) → <b>+</b> → Ứng dụng (App) → chọn các app hay lướt → <b>Được mở</b> + <b>Chạy ngay lập tức</b> → tác vụ <b>Chọn từ menu</b> “Có việc gấp không?” với hai mục; dưới “Không gấp” thêm <b>Mở URL</b> với link tập trung.</p>
+        <p><b>Android</b>: MacroDroid → trigger <b>Screen Unlocked</b> → action <b>If Confirmed Then</b> (“Có việc gấp không?”) → bên trong thêm <b>Open Website</b> với link tập trung.</p>
+        <p className="small">iPhone không có trigger mở khoá màn hình nên pop-up bật khi mở các app đã chọn.</p>
       </div>
       <div className="span-all">
-        <p>Link mở thẳng màn hình tập trung:</p>
-        <p className="url"><code>{url}</code> <button type="button" className="btn ghost sm" onClick={copy}>Chép link</button></p>
+        <p>Link app: <code>{base}</code> <button type="button" className="btn ghost sm" onClick={() => copy(base)}>Chép</button></p>
+        <p>Link tập trung: <code>{focus}</code> <button type="button" className="btn ghost sm" onClick={() => copy(focus)}>Chép</button></p>
         {copied && <p className="small" role="status">{copied}</p>}
-        <p className="small">Lần đầu mở link trên điện thoại, đăng nhập claude.ai trong trình duyệt. Đổi đuôi <code>#focus</code> thành <code>#checkin</code> nếu muốn app tự hỏi câu “Có việc gấp không?”.</p>
+        <p className="small">Bản này lưu dữ liệu ngay trên điện thoại nên mở là có, không phải tải lại. Thỉnh thoảng vào Sao lưu → Chép dữ liệu để cất một bản phòng khi xoá app.</p>
       </div>
     </div>
   );
@@ -205,8 +205,8 @@ export function More({ s, update, replace, sync }: { s: Save; update: Update; re
       </section>
       <section className="band alt" aria-labelledby="phone-h">
         <div className="wrap">
-          <h2 id="phone-h">Pop-up trên điện thoại</h2>
-          <p className="lead">Mỗi lần mở điện thoại, máy hỏi “Có việc gấp không?”. Chọn không gấp thì máy mở thẳng màn hình tập trung của game.</p>
+          <h2 id="phone-h">Điện thoại: cài app và pop-up</h2>
+          <p className="lead">Cài bản web lên màn hình chính để mở như app thật, dữ liệu lưu ngay trên máy. Pop-up hỏi “Có việc gấp không?” mỗi lần bạn định lướt.</p>
           <Phone />
         </div>
       </section>

@@ -7,7 +7,7 @@ export const PLAYER = 'Phương';
 export const BIRTH = new Date(2004, 10, 7);
 export const PERMIT = new Date(2029, 2, 6);
 /** First baker shift; CEC hours count from here. */
-export const START = new Date(2026, 11, 7);
+export const START = new Date(2026, 11, 8);
 export const CEC_H = 1560;
 /** The claude.ai link of the live game, used for the phone shortcut. */
 export const APP_URL = 'https://claude.ai/artifact/PNGegPGqUGvEE5rYMCobvE';
@@ -75,7 +75,7 @@ export const WEEK: Day[] = [
 /** Route board. `d`: a fixed label, or 'today' / 'cec' / 'fr' for dates the game computes. "|" breaks a title. */
 export const STATIONS: { id: string; t: string; d: string; far?: boolean }[] = [
   { id: 'now', t: 'Hôm nay', d: 'today' },
-  { id: 'm1', t: 'Ca đầu JJ Bean', d: '07/12/2026' },
+  { id: 'm1', t: 'Ca đầu JJ Bean', d: '08/12/2026' },
   { id: 'm3', t: 'CELPIP', d: 'trước 05/2027' },
   { id: 'm5', t: 'NCLC 7 (TCF)', d: 'fr' },
   { id: 'm6', t: '1.560 giờ CEC', d: 'cec' },

@@ -1,5 +1,7 @@
 import type { Entry, Kind, Save, Skill } from '../types';
-import { WEEK } from '../data/plan';
+import type { Day } from '../types';
+import { FREE_DAY, PLAN_START, START, WEEK } from '../data/plan';
+import { isoDate } from './dates';
 
 /** Keeps only the newest `keep` date keys of a date-keyed record. */
 const trim = (o: Record<string, unknown>, keep: number) => {
@@ -7,7 +9,14 @@ const trim = (o: Record<string, unknown>, keep: number) => {
   while (ks.length > keep) delete o[ks.shift()!];
 };
 
-export const dayPlan = (d = new Date()) => WEEK.find((w) => w.wd.includes(d.getDay())) ?? WEEK[0];
+/** null before the plan starts; free weekdays until the first shift; then the regular week. */
+export function dayPlan(d = new Date()): Day | null {
+  const t = isoDate(d);
+  if (t < PLAN_START) return null;
+  const wd = d.getDay();
+  if (t < isoDate(START) && wd >= 1 && wd <= 5) return FREE_DAY;
+  return WEEK.find((w) => w.wd.includes(wd)) ?? WEEK[0];
+}
 
 export function addMinutes(x: Save, d: string, sk: Skill, min: number) {
   const day = x.fr.days[d] ?? (x.fr.days[d] = {});

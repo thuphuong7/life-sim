@@ -8,6 +8,8 @@ export const BIRTH = new Date(2004, 10, 7);
 export const PERMIT = new Date(2029, 2, 6);
 /** First baker shift; CEC hours count from here. */
 export const START = new Date(2026, 11, 8);
+/** The daily schedule and weekly challenges start on Monday 30/11/2026 (French phase 0). */
+export const PLAN_START = '2026-11-30';
 export const CEC_H = 1560;
 /** The claude.ai link of the live game, used for the phone shortcut. */
 export const APP_URL = 'https://claude.ai/artifact/PNGegPGqUGvEE5rYMCobvE';
@@ -60,17 +62,24 @@ export const WEEK: Day[] = [
     { t: '15:45', n: 'Nhiệm vụ nhẹ: 1 bài Coursera hoặc LinkedIn; gym 2 buổi trong tuần', k: 'life' },
     { t: '20:30', n: 'Lên giường', k: 'rest' },
   ] },
-  { d: 'Thứ 6', tag: 'Nửa ca JJ Bean, nếu được duyệt', wd: [5], s: [
-    { t: '05:00', n: 'Nửa ca làm bánh, khoảng 4 giờ (giờ CEC)', k: 'work' },
-    { t: '11:00', id: 'fr-eo', n: 'Nói: 3 phần EO, ghi âm rồi nghe lại; hoặc 1 buổi Tandem hay gia sư', k: 'fr', sk: 'eo', min: 60, u: TANDEM, app: 'Tandem' },
-    { t: '12:15', id: 'fr-gv', n: 'Ôn sổ lỗi và các chủ điểm đến hạn ôn', k: 'fr', sk: 'gv', min: 30 },
-    { t: '14:00', n: 'Khối học lớn: CCAO-F, QuickBooks, MarketSafe, hoặc việc quầy bánh mì', k: 'life' },
+  { d: 'Thứ 6', tag: 'Ca JJ Bean nếu được xếp thêm, xong lúc 13:00', wd: [5], s: [
+    { t: 'Sáng', n: 'Ca làm bánh nếu JJ Bean xếp thêm thứ 6, xong lúc 13:00 (giờ CEC)', k: 'work' },
+    { t: '13:15', id: 'fr-co', n: 'Trên đường về: Journal en français facile, nghe lần 2 với transcript', k: 'fr', sk: 'co', min: 25, u: RFI, app: 'RFI' },
+    { t: '15:00', id: 'fr-eo', n: 'Nói: 3 phần EO, ghi âm rồi nghe lại; hoặc 1 buổi Tandem hay gia sư', k: 'fr', sk: 'eo', min: 45, u: TANDEM, app: 'Tandem' },
+    { t: '16:00', id: 'fr-gv', n: 'Ôn sổ lỗi và các chủ điểm đến hạn ôn', k: 'fr', sk: 'gv', min: 30 },
+    { t: '20:30', n: 'Lên giường sớm', k: 'rest' },
   ] },
   { d: 'Thứ 7–CN', tag: 'Ca barista', wd: [6, 0], s: [
     { t: 'Giờ nghỉ', id: 'we-gv', n: 'Flashcard tiếng Pháp 15 phút', k: 'fr', sk: 'gv', min: 15, u: ANKI, app: 'Anki' },
     { t: 'Tối', id: 'we-co', n: 'Podcast tiếng Pháp 30 phút; tối CN ghi giờ tuần vào bảng', k: 'fr', sk: 'co', min: 30, u: INNER, app: 'InnerFrench' },
   ] },
 ];
+
+/** Weekdays before the first JJ Bean shift: the free Monday plan, without the early-night reminder. */
+export const FREE_DAY: Day = {
+  d: 'Ngày rảnh', tag: 'Chưa đi làm, ca JJ Bean bắt đầu thứ 3, 08/12', wd: [],
+  s: WEEK[0].s.filter((b) => b.k !== 'rest'),
+};
 
 /** Route board. `d`: a fixed label, or 'today' / 'cec' / 'fr' for dates the game computes. "|" breaks a title. */
 export const STATIONS: { id: string; t: string; d: string; far?: boolean }[] = [

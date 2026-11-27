@@ -165,7 +165,7 @@ export function More({ s, update, replace, sync }: { s: Save; update: Update; re
       <section className="band" aria-labelledby="week-h">
         <div className="wrap">
           <h2 id="week-h">Một tuần trong game</h2>
-          <p className="lead">Ca JJ Bean 5:00–13:00 thứ 3–5, thêm nửa ca thứ 6 nếu được duyệt. Tiếng Pháp khoảng 9,5 giờ mỗi tuần, chia đều 7 ngày. Dưới 8 giờ/tuần thì mốc NCLC 7 lùi về sau đợt đủ giờ CEC.</p>
+          <p className="lead">Từ 08/12: ca JJ Bean 5:00–13:00 thứ 3–5, thêm ca thứ 6 nếu được xếp; mọi việc học đặt sau 13:00 những ngày đi làm. Trước 08/12 các ngày trong tuần là ngày rảnh. Tiếng Pháp khoảng 9,5 giờ mỗi tuần, chia đều 7 ngày.</p>
           <Week />
         </div>
       </section>

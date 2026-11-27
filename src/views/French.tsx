@@ -6,6 +6,7 @@ import {
 } from '../data/french';
 import { PLAN_MIN, avgFr, dueGrammar, errCount, frDate, frHours, lastScore, mockMin, weakPoints, weekMinutes } from '../lib/calc';
 import { latestFor } from '../lib/actions';
+import { PLAN_START } from '../data/plan';
 import { RevertButton } from '../components/Revert';
 import { addDays, fmtDM, fmtDMY, fmtMY, isoDate, parseISO, today, weekIndex, weekKey } from '../lib/dates';
 import { Ext, Meter, Stars, Tabs } from '../components/ui';
@@ -271,6 +272,7 @@ function Errors({ s, update, pref, clearPref }: P & { pref: Pref; clearPref: () 
 /** This week's five challenges; shared by Today and the Challenges tab. */
 export function ChallengeList({ s, ask, revert }: { s: Save; ask: Ask; revert: Revert }) {
   const wk = weekKey();
+  if (wk < PLAN_START) return <p className="small">Thử thách tuần bắt đầu từ thứ 2, 30/11.</p>;
   return (
     <ul className="quests">
       {weekChallenges(weekIndex()).map((c) => {

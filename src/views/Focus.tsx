@@ -23,7 +23,7 @@ export function Focus({ s, update, ask, mode, close, go }: { s: Save; update: Up
     if (mode === 'focus') count();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const nextFr = dayPlan().s.find((b) => b.k === 'fr' && b.id && !latestFor(s, 'blk', b.id, d));
+  const nextFr = dayPlan()?.s.find((b) => b.k === 'fr' && b.id && !latestFor(s, 'blk', b.id, d));
   const leave = (h: string) => { close(); go(h); };
 
   return (

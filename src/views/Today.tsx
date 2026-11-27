@@ -16,7 +16,7 @@ export function Today({ s, ask, revert, go, onFocus }: P) {
   const now = new Date();
   const d = isoDate(now);
   const plan = dayPlan(now);
-  const target = plan.s.reduce((a, b) => a + (b.k === 'fr' ? b.min ?? 0 : 0), 0);
+  const target = plan ? plan.s.reduce((a, b) => a + (b.k === 'fr' ? b.min ?? 0 : 0), 0) : 0;
   const mins = dayMin(s, d);
   const [sk, setSk] = useState<Skill>('co');
   const due = dueGrammar(s);
@@ -29,7 +29,9 @@ export function Today({ s, ask, revert, go, onFocus }: P) {
       <div className="wrap cols">
         <div>
           <h2 id="today-h">{WEEKDAY[now.getDay()]}, {fmtDM(now)}</h2>
-          <p className="lead">{plan.d}: {plan.tag}. Lịch hôm nay có {target} phút tiếng Pháp. Xong việc nào thì nộp bằng chứng việc đó.</p>
+          <p className="lead">{plan
+            ? <>{plan.d}: {plan.tag}. Lịch hôm nay có {target} phút tiếng Pháp. Xong việc nào thì nộp bằng chứng việc đó.</>
+            : <>Lịch học bắt đầu thứ 2, 30/11 và ca JJ Bean bắt đầu thứ 3, 08/12. Hôm nay không có việc trong lịch; muốn học thêm thì dùng ô Học ngoài lịch.</>}</p>
           <div className="panel">
             <div className="stat">
               <div className="row"><span>Tiếng Pháp hôm nay (đã nộp)</span><b className="nw">{mins}/{target} phút</b></div>
@@ -41,7 +43,7 @@ export function Today({ s, ask, revert, go, onFocus }: P) {
             </div>
           </div>
           <ol className="blocks">
-            {plan.s.map((b, i) => {
+            {(plan?.s ?? []).map((b, i) => {
               const e = b.id ? latestFor(s, 'blk', b.id, d) : null;
               return (
                 <li key={i} className={`blk k-${b.k}${e ? ' done' : ''}`}>

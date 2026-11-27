@@ -34,8 +34,8 @@ export function Today({ s, ask, revert, go, onFocus }: P) {
             : <>Lịch học bắt đầu thứ 2, 30/11 và ca JJ Bean bắt đầu thứ 3, 08/12. Hôm nay không có việc trong lịch; muốn học thêm thì dùng ô Học ngoài lịch.</>}</p>
           <div className="panel">
             <div className="stat">
-              <div className="row"><span>Tiếng Pháp hôm nay (đã nộp)</span><b className="nw">{mins}/{target} phút</b></div>
-              <Meter v={mins} max={target || 1} goal={target > 0 && mins >= target} />
+              <div className="row"><span>Tiếng Pháp hôm nay (đã nộp)</span><b className="nw">{target > 0 ? `${mins}/${target}` : mins} phút</b></div>
+              {target > 0 && <Meter v={mins} max={target} goal={mins >= target} />}
             </div>
             <div className="acts">
               <button type="button" className="btn ghost sm" onClick={onFocus}>Mở màn hình tập trung</button>

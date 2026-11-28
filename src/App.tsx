@@ -25,18 +25,42 @@ function parse(hash: string) {
   return { main, sub: h.startsWith('french-') ? h.slice(7) : h === 'history' ? 'history' : '', pop };
 }
 
+/** The phone opens #phrase on every unlock. Within 5 minutes of the last card it opened, the card stays closed. */
+const POP_KEY = 'phuong-lifesim-pop';
+const POP_GAP = 5 * 60_000;
+function autoPopOk(now = Date.now()) {
+  try {
+    const last = Number(localStorage.getItem(POP_KEY)) || 0;
+    if (now >= last && now - last < POP_GAP) return false;
+    localStorage.setItem(POP_KEY, String(now));
+  } catch { /* no storage here: always show */ }
+  return true;
+}
+
 export default function App() {
   const store = useStore();
   const { s } = store;
   const [route, setRoute] = useState(() => parse(location.hash));
-  const [pop, setPop] = useState(route.pop);
+  const [pop, setPop] = useState(() => route.pop && autoPopOk());
   const [pending, setPending] = useState<Pending | null>(null);
+
+  /** Leaves a #phrase address for #today, without adding a history entry. */
+  const toToday = () => {
+    if (/^#(phrase|focus|checkin)$/.test(location.hash)) {
+      try { history.replaceState(null, '', '#today'); } catch { /* some frames refuse; the view still changes */ }
+      setRoute(parse('#today'));
+    }
+  };
+  useEffect(() => { if (route.pop && !pop) toToday(); }, []); // opened again within 5 minutes
 
   useEffect(() => {
     const on = () => {
       const r = parse(location.hash);
       setRoute(r);
-      if (r.pop) setPop(true);
+      if (r.pop) {
+        if (autoPopOk()) setPop(true);
+        else toToday();
+      }
     };
     window.addEventListener('hashchange', on);
     return () => window.removeEventListener('hashchange', on);
@@ -49,10 +73,7 @@ export default function App() {
   };
   const closePop = () => {
     setPop(false);
-    if (/^#(phrase|focus|checkin)$/.test(location.hash)) {
-      try { history.replaceState(null, '', '#today'); } catch { /* some frames refuse; the view still changes */ }
-      setRoute(parse('#today'));
-    }
+    toToday();
   };
 
   // "+N XP" appears only right after the player confirms a submission.

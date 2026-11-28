@@ -6,7 +6,7 @@ import { daysUntil, fmtMY } from '../lib/dates';
 import { THEME_TXT, applyTheme, loadTheme, nextTheme, type ThemePref } from '../lib/theme';
 import { Icon } from './ui';
 
-const THEME_ICON: Record<ThemePref, string> = { auto: 'auto', light: 'today', dark: 'moon' };
+const THEME_ICON: Record<ThemePref, string> = { light: 'today', dark: 'moon' };
 
 /** Cycles Tự động → Sáng → Tối. */
 function ThemeToggle() {

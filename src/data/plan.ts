@@ -25,7 +25,7 @@ export const ACH = content.ACH as unknown as [string, string, number, string?][]
 
 export const TABS: [QTab, string][] = [['main', 'Chính'], ['side', 'Kỹ năng'], ['biz', 'Quầy bánh mì'], ['life', 'Đời sống']];
 /** 28 h/week assumes the extra Friday half shift. */
-export const DEFAULT_SET = { teerPlan: 28, frPlan: 9.5, frNeed: 600, saved: 0, monthly: 0, rate: 0, pNew: 3 };
+export const DEFAULT_SET = { teerPlan: 28, frPlan: 9.5, frNeed: 600, saved: 0, monthly: 0, rate: 0, newPerDay: 30 };
 
 /** CRS estimates from Kế hoạch v1.3 against the 2026 draw cut-offs. */
 export const CRS = {

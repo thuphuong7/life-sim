@@ -22,7 +22,7 @@ const HARD_FACTOR = 1.2;
 const EASY_BONUS = 1.3;
 const MAX_IVL = 365;
 export const MATURE = 21;
-export const NEW_PER_DAY = 3;
+export const NEW_PER_DAY = 30;
 
 export const emptyPhrases = (): PhraseState => ({ cards: {}, days: {} });
 

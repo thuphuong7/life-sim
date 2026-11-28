@@ -171,7 +171,7 @@ function Grammar({ s, update, addErr }: P & { addErr: (k: 'g' | 'v', ref: string
 
 function Phrases({ s, update, onPhrase }: P & { onPhrase: () => void }) {
   const now = Date.now();
-  const st = stats(s.pc, s.set.pNew, now);
+  const st = stats(s.pc, s.set.newPerDay, now);
   const [f, setF] = useState<'learned' | 'due' | 'all'>(st.seen ? 'learned' : 'all');
   const [accent, setAccent] = useState<Accent>(loadAccent);
   const voice = useFrenchVoice();
@@ -182,7 +182,7 @@ function Phrases({ s, update, onPhrase }: P & { onPhrase: () => void }) {
   const STATUS = { due: ['ask', 'Đến hạn ôn'], mature: ['ok', 'Đã thuộc'], new: ['lock', 'Chưa học'] } as const;
   return (
     <>
-      <p className="lead">Mỗi lần mở khoá điện thoại, app bật một thẻ cụm từ: có nghĩa, lúc nào dùng, câu ví dụ và nút nghe. Mỗi ngày tối đa {s.set.pNew} cụm mới; cụm đã học quay lại đúng lúc sắp quên, theo cách của Anki. Thẻ cụm từ không cộng XP.</p>
+      <p className="lead">Mỗi lần mở khoá điện thoại, app bật một thẻ cụm từ: có nghĩa, lúc nào dùng, câu ví dụ và nút nghe. Mỗi ngày tối đa {s.set.newPerDay} cụm mới; ngày nào chưa xem hết thì phần còn lại để sang hôm sau. Cụm đã học quay lại đúng lúc sắp quên, theo cách của Anki. Thẻ cụm từ không cộng XP.</p>
       <div className="cols">
         <div className="panel">
           <h3 className="first">Tiến độ</h3>
@@ -194,8 +194,8 @@ function Phrases({ s, update, onPhrase }: P & { onPhrase: () => void }) {
         <div className="panel">
           <h3 className="first">Cài đặt thẻ</h3>
           <label className="fld">Cụm mới mỗi ngày
-            <select value={s.set.pNew} onChange={(e) => update((x) => { x.set.pNew = Number(e.target.value) || 3; })}>
-              {[1, 2, 3, 4, 5].map((n) => <option key={n} value={n}>{n} cụm</option>)}
+            <select value={s.set.newPerDay} onChange={(e) => update((x) => { x.set.newPerDay = Number(e.target.value) || 30; })}>
+              {[3, 5, 10, 15, 20, 30].map((n) => <option key={n} value={n}>{n} cụm</option>)}
             </select>
           </label>
           <label className="fld">Giọng đọc trên máy này

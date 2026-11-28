@@ -56,7 +56,7 @@ export interface FrState {
   imm: Record<string, boolean>;
   base: string;
 }
-export interface Settings { teerPlan: number; frPlan: number; frNeed: number; saved: number; monthly: number; rate: number; pNew: number }
+export interface Settings { teerPlan: number; frPlan: number; frNeed: number; saved: number; monthly: number; rate: number; newPerDay: number }
 
 /** One phrase card's schedule (Anki-style). Times are epoch ms; a review card is due from local midnight of its day. */
 export interface PCard {

@@ -52,7 +52,6 @@ const PATHS: Record<string, string> = {
   flame: 'M12 3c1 4 5 5 5 10a5 5 0 0 1-10 0c0-3 2-4 2-7 1.5 1 2.5 2.5 3 4 .5-2 0-4 0-7z',
   lock: 'M7 11V8a5 5 0 0 1 10 0v3M5 11h14v10H5z',
   moon: 'M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z',
-  auto: 'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM12 3v18M12 8l5 0M12 12h6M12 16h5',
 };
 export function Icon({ n }: { n: string }) {
   return <svg className="ico" viewBox="0 0 24 24" aria-hidden="true"><path d={PATHS[n]} /></svg>;

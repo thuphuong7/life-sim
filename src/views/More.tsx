@@ -88,11 +88,12 @@ function Phone() {
           <li>MacroDroid → <b>Thêm macro</b> (Add Macro).</li>
           <li>Trigger: <b>Device Events</b> → <b>Screen Unlocked</b> (mở khoá màn hình).</li>
           <li>Action: <b>Applications</b> → <b>Open Website</b> → dán link thẻ bên dưới. Không chọn “HTTP GET (No web browser)”.</li>
+          <li>Constraints → <b>+</b> → <b>MacroDroid Specific</b> → <b>Macro(s) Invoked/Not Invoked Recently</b>: chọn macro này, <b>Not invoked</b>, <b>5 phút</b>. Mở máy lần nữa trong 5 phút thì thẻ không bật.</li>
           <li>Nếu muốn: thêm Constraint <b>Time of Day</b> 6:00–21:00 để đêm khuya không bật.</li>
           <li>Đặt tên “Cụm từ tiếng Pháp” rồi lưu.</li>
         </ol>
         <p><b>iPhone</b> không có trigger mở khoá: Phím tắt → Tự động hoá → <b>+</b> → Ứng dụng → chọn các app hay lướt → <b>Được mở</b> + <b>Chạy ngay lập tức</b> → tác vụ <b>Mở URL</b> với link thẻ.</p>
-        <p className="small">Mỗi lần mở máy hiện 1 thẻ: thẻ đến hạn ôn trước, rồi cụm mới (tối đa theo cài đặt), hết thì ôn thêm. Bấm Để sau hoặc nút quay lại là đóng.</p>
+        <p className="small">Mỗi lần mở máy hiện 1 thẻ: thẻ đến hạn ôn trước, rồi cụm mới (tối đa theo cài đặt), hết thì ôn thêm. Bấm Để sau hoặc nút quay lại là đóng. App cũng tự bỏ qua nếu thẻ đã bật trong 5 phút trước đó.</p>
       </div>
       <div>
         <h3 className="first">Giọng đọc tiếng Pháp</h3>

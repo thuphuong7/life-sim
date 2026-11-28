@@ -88,7 +88,7 @@ export function migrate(raw: unknown): Save {
     set: {
       teerPlan: num(set.teerPlan, b.set.teerPlan), frPlan: num(set.frPlan, b.set.frPlan), frNeed: num(set.frNeed, b.set.frNeed),
       saved: num(set.saved, 0), monthly: num(set.monthly, 0), rate: num(set.rate, 0),
-      pNew: Math.min(10, Math.max(1, Math.round(num(set.pNew, b.set.pNew)))),
+      newPerDay: Math.min(50, Math.max(1, Math.round(num(set.newPerDay, b.set.newPerDay)))),
     },
     ci: obj(r.ci),
     pc: {

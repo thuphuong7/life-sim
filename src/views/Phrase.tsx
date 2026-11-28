@@ -31,7 +31,7 @@ function Example({ p }: { p: Phrase }) {
  * Nothing here adds XP; the schedule is the reward.
  */
 export function PhrasePop({ s, update, close }: { s: Save; update: Update; close: () => void }) {
-  const limit = s.set.pNew;
+  const limit = s.set.newPerDay;
   const [pick, setPick] = useState<Pick | null>(() => pickCard(s.pc, limit, Date.now()));
   const [shown, setShown] = useState(false);
   const [saved, setSaved] = useState<{ when: string; id: string } | null>(null);

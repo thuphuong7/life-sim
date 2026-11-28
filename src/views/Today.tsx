@@ -21,7 +21,7 @@ export function Today({ s, ask, revert, go, onPhrase }: P) {
   const mins = dayMin(s, d);
   const [sk, setSk] = useState<Skill>('co');
   const due = dueGrammar(s);
-  const pc = stats(s.pc, s.set.pNew, now.getTime());
+  const pc = stats(s.pc, s.set.newPerDay, now.getTime());
   const next = (['main', 'side', 'biz', 'life'] as const)
     .map((g) => QUESTS.find((q) => q.g === g && !s.done[q.id]))
     .filter((q): q is Quest => !!q);

@@ -4,15 +4,16 @@ import { QUESTS } from '../data/plan';
 import { SKILLS } from '../data/french';
 import { dayMin, dueGrammar } from '../lib/calc';
 import { dayPlan, latestFor } from '../lib/actions';
+import { stats } from '../lib/srs';
 import { WEEKDAY, fmtDM, isoDate } from '../lib/dates';
 import { Ext, Meter } from '../components/ui';
 import { RevertButton } from '../components/Revert';
 import { ChallengeList } from './French';
 import { QuestRow } from './Quests';
 
-type P = { s: Save; ask: Ask; revert: Revert; go: Go; onFocus: () => void };
+type P = { s: Save; ask: Ask; revert: Revert; go: Go; onPhrase: () => void };
 
-export function Today({ s, ask, revert, go, onFocus }: P) {
+export function Today({ s, ask, revert, go, onPhrase }: P) {
   const now = new Date();
   const d = isoDate(now);
   const plan = dayPlan(now);
@@ -20,6 +21,7 @@ export function Today({ s, ask, revert, go, onFocus }: P) {
   const mins = dayMin(s, d);
   const [sk, setSk] = useState<Skill>('co');
   const due = dueGrammar(s);
+  const pc = stats(s.pc, s.set.pNew, now.getTime());
   const next = (['main', 'side', 'biz', 'life'] as const)
     .map((g) => QUESTS.find((q) => q.g === g && !s.done[q.id]))
     .filter((q): q is Quest => !!q);
@@ -38,7 +40,6 @@ export function Today({ s, ask, revert, go, onFocus }: P) {
               {target > 0 && <Meter v={mins} max={target} goal={mins >= target} />}
             </div>
             <div className="acts">
-              <button type="button" className="btn ghost sm" onClick={onFocus}>Mở màn hình tập trung</button>
               <button type="button" className="btn ghost sm" onClick={() => go('history')}>Lịch sử hoàn thành</button>
             </div>
           </div>
@@ -72,6 +73,11 @@ export function Today({ s, ask, revert, go, onFocus }: P) {
           </ol>
         </div>
         <aside>
+          <div className="panel">
+            <h3 className="first">Cụm từ hôm nay</h3>
+            <p className="small">Mới {pc.newToday}/{pc.limit} · {pc.due} thẻ đến hạn ôn · đã học {pc.seen}/{pc.total} cụm</p>
+            <button type="button" className="btn ghost sm" onClick={onPhrase}>Học ngay</button>
+          </div>
           <div className="panel">
             <h3 className="first">Học ngoài lịch</h3>
             <div className="quick">

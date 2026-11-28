@@ -9,17 +9,20 @@ import { latestFor } from '../lib/actions';
 import { PLAN_START } from '../data/plan';
 import { RevertButton } from '../components/Revert';
 import { addDays, fmtDM, fmtDMY, fmtMY, isoDate, parseISO, today, weekIndex, weekKey } from '../lib/dates';
-import { Ext, Meter, Stars, Tabs } from '../components/ui';
+import { Ext, Icon, Meter, Stars, Tabs } from '../components/ui';
+import { PHRASES } from '../data/phrases';
+import { stats, statusOf } from '../lib/srs';
+import { ACCENT_TXT, canSpeak, loadAccent, saveAccent, speak, useFrenchVoice, type Accent } from '../lib/speak';
 
 type P = { s: Save; update: Update };
-const SUBS = [['overview', 'Tổng quan'], ['grammar', 'Ngữ pháp'], ['vocab', 'Từ vựng'], ['errors', 'Sổ lỗi'], ['challenges', 'Thử thách'], ['mocks', 'Thi thử'], ['immersion', 'Immersion']] as const;
+const SUBS = [['overview', 'Tổng quan'], ['phrases', 'Cụm từ'], ['grammar', 'Ngữ pháp'], ['vocab', 'Từ vựng'], ['errors', 'Sổ lỗi'], ['challenges', 'Thử thách'], ['mocks', 'Thi thử'], ['immersion', 'Immersion']] as const;
 type Sub = (typeof SUBS)[number][0];
 type Pref = { k: 'g' | 'v'; ref: string } | null;
 
 const refName = (ref: string) =>
   GRAMMAR.find((g) => g.id === ref)?.fr ?? VOCAB.find((v) => v.id === ref)?.vi ?? PRON.find((p) => p[0] === ref)?.[1] ?? ref;
 
-export function French({ s, update, sub, go, ask, revert }: P & { sub: string; go: Go; ask: Ask; revert: Revert }) {
+export function French({ s, update, sub, go, ask, revert, onPhrase }: P & { sub: string; go: Go; ask: Ask; revert: Revert; onPhrase: () => void }) {
   const cur: Sub = SUBS.some(([k]) => k === sub) ? (sub as Sub) : 'overview';
   const [pref, setPref] = useState<Pref>(null);
   const addErr = (k: 'g' | 'v', ref: string) => { setPref({ k, ref }); go('french-errors'); };
@@ -30,6 +33,7 @@ export function French({ s, update, sub, go, ask, revert }: P & { sub: string; g
         <p className="lead">Mục tiêu là NCLC 7 cả 4 phần: Nghe từ 458, Đọc từ 453, Viết và Nói từ 10/20. Học bằng các app sẵn có; ở đây chỉ theo dõi sao ngữ pháp, từ vựng, lỗi sai và điểm thi thử.</p>
         <Tabs items={SUBS} value={cur} onChange={(k) => go(k === 'overview' ? 'french' : `french-${k}`)} label="Phần tiếng Pháp" scroll />
         {cur === 'overview' && <Overview s={s} update={update} />}
+        {cur === 'phrases' && <Phrases s={s} update={update} onPhrase={onPhrase} />}
         {cur === 'grammar' && <Grammar s={s} update={update} addErr={addErr} />}
         {cur === 'vocab' && <Vocab s={s} update={update} addErr={addErr} />}
         {cur === 'errors' && <Errors s={s} update={update} pref={pref} clearPref={() => setPref(null)} />}
@@ -153,6 +157,84 @@ function Grammar({ s, update, addErr }: P & { addErr: (k: 'g' | 'v', ref: string
                       <Ext href={learnUrl(r.fr)} className="btn ghost sm">Bài tập</Ext>
                       {v > 0 && <button type="button" className="btn ghost sm" onClick={() => review(r.id)}>Đã ôn</button>}
                       <button type="button" className="btn ghost sm" onClick={() => addErr('g', r.id)}>+ Lỗi</button>
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        );
+      })}
+    </>
+  );
+}
+
+function Phrases({ s, update, onPhrase }: P & { onPhrase: () => void }) {
+  const now = Date.now();
+  const st = stats(s.pc, s.set.pNew, now);
+  const [f, setF] = useState<'learned' | 'due' | 'all'>(st.seen ? 'learned' : 'all');
+  const [accent, setAccent] = useState<Accent>(loadAccent);
+  const voice = useFrenchVoice();
+  const rows = PHRASES.filter((p) => {
+    const k = statusOf(s.pc.cards[p.id], now);
+    return f === 'all' || (f === 'due' && k === 'due') || (f === 'learned' && k !== 'new');
+  });
+  const STATUS = { due: ['ask', 'Đến hạn ôn'], mature: ['ok', 'Đã thuộc'], new: ['lock', 'Chưa học'] } as const;
+  return (
+    <>
+      <p className="lead">Mỗi lần mở khoá điện thoại, app bật một thẻ cụm từ: có nghĩa, lúc nào dùng, câu ví dụ và nút nghe. Mỗi ngày tối đa {s.set.pNew} cụm mới; cụm đã học quay lại đúng lúc sắp quên, theo cách của Anki. Thẻ cụm từ không cộng XP.</p>
+      <div className="cols">
+        <div className="panel">
+          <h3 className="first">Tiến độ</h3>
+          <div className="stat"><div className="row"><span>Đã học</span><b className="nw">{st.seen}/{st.total} cụm</b></div><Meter v={st.seen} max={st.total} goal={st.seen >= st.total} /></div>
+          <div className="stat"><div className="row"><span>Đã thuộc (ôn cách nhau từ 21 ngày)</span><b className="nw">{st.mature} cụm</b></div><Meter v={st.mature} max={st.total} goal={st.mature >= st.total} /></div>
+          <p className="small">Hôm nay: mới {st.newToday}/{st.limit} · {st.due} thẻ đến hạn ôn.</p>
+          <button type="button" className="btn sm" onClick={onPhrase}>Học ngay</button>
+        </div>
+        <div className="panel">
+          <h3 className="first">Cài đặt thẻ</h3>
+          <label className="fld">Cụm mới mỗi ngày
+            <select value={s.set.pNew} onChange={(e) => update((x) => { x.set.pNew = Number(e.target.value) || 3; })}>
+              {[1, 2, 3, 4, 5].map((n) => <option key={n} value={n}>{n} cụm</option>)}
+            </select>
+          </label>
+          <label className="fld">Giọng đọc trên máy này
+            <select value={accent} onChange={(e) => { const a = e.target.value as Accent; saveAccent(a); setAccent(a); }}>
+              {(Object.keys(ACCENT_TXT) as Accent[]).map((a) => <option key={a} value={a}>{ACCENT_TXT[a]}</option>)}
+            </select>
+          </label>
+          {canSpeak()
+            ? <button type="button" className="btn ghost sm" onClick={() => speak('Bonjour, je m’appelle Phương et j’apprends le français.')}><Icon n="sound" />Nghe thử</button>
+            : <p className="small">Trình duyệt này không đọc được thành tiếng.</p>}
+          {voice === false && canSpeak() && <p className="small">Máy chưa có giọng tiếng Pháp: xem cách cài ở mục Thêm → Điện thoại.</p>}
+        </div>
+      </div>
+      <Tabs items={[['learned', `Đã học (${st.seen})`], ['due', `Đến hạn ôn (${st.due})`], ['all', `Tất cả (${st.total})`]] as const} value={f} onChange={setF} label="Lọc cụm từ" />
+      {rows.length === 0 && <p className="small">Không có cụm nào trong mục này.</p>}
+      {(['A2', 'B1', 'B2'] as Level[]).map((lv) => {
+        const list = rows.filter((p) => p.lv === lv);
+        if (!list.length) return null;
+        const all = PHRASES.filter((p) => p.lv === lv);
+        const learned = all.filter((p) => s.pc.cards[p.id]).length;
+        return (
+          <div key={lv}>
+            <h3>{lv} · {learned}/{all.length} cụm đã học</h3>
+            <ul className="quests">
+              {list.map((p) => {
+                const c = s.pc.cards[p.id];
+                const k = statusOf(c, now);
+                const badge = k === 'due' || k === 'mature' || k === 'new' ? STATUS[k] : null;
+                return (
+                  <li key={p.id} className="q gram">
+                    {canSpeak() && <button type="button" className="btn ghost sm" aria-label={`Nghe: ${p.fr}`} onClick={() => speak(p.fr)}><Icon n="sound" /></button>}
+                    <div>
+                      <p className="t" lang="fr">{p.fr}</p>
+                      <p className="d">{p.vi}</p>
+                      <p className="tags">
+                        <span className="badge tag">{p.tag}</span>
+                        {badge && <span className={`badge ${badge[0]}`}>{badge[1]}</span>}
+                        {c && k !== 'due' && <span className="small">Ôn lại {fmtDM(new Date(c.due))}</span>}
+                      </p>
                     </div>
                   </li>
                 );

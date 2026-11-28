@@ -56,7 +56,29 @@ export interface FrState {
   imm: Record<string, boolean>;
   base: string;
 }
-export interface Settings { teerPlan: number; frPlan: number; frNeed: number; saved: number; monthly: number; rate: number }
+export interface Settings { teerPlan: number; frPlan: number; frNeed: number; saved: number; monthly: number; rate: number; pNew: number }
+
+/** One phrase card's schedule (Anki-style). Times are epoch ms; a review card is due from local midnight of its day. */
+export interface PCard {
+  st: 'learn' | 'review' | 'relearn';
+  due: number;
+  /** interval in days (review cards) */
+  ivl: number;
+  ease: number;
+  /** current learning or relearning step */
+  step: number;
+  reps: number;
+  lapses: number;
+  /** ISO date the phrase was first shown */
+  first: string;
+  last: number;
+}
+export interface PhraseState {
+  /** phrase id → its card; a phrase with no card has not been shown yet */
+  cards: Record<string, PCard>;
+  /** ISO date → new phrases shown and reviews answered that day */
+  days: Record<string, { n: number; r: number }>;
+}
 
 /** The whole saved game: one JSON document, schema v3. */
 export interface Save {
@@ -65,8 +87,10 @@ export interface Save {
   log: WeekLog[];
   fr: FrState;
   set: Settings;
-  /** ISO date → times the focus screen was chosen over scrolling */
+  /** ISO date → times the old focus screen was chosen over scrolling (kept from before the phrase cards) */
   ci: Record<string, number>;
+  /** phrase cards shown when the phone is unlocked */
+  pc: PhraseState;
   /** confirmed completions, newest first */
   hist: Entry[];
   updated: string;

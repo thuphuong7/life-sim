@@ -55,7 +55,3 @@ export function revertEntry(x: Save, id: string) {
   if ((e.kind === 'blk' || e.kind === 'min') && e.sk) addMinutes(x, e.d, e.sk, -(e.min ?? 0));
 }
 
-export function countFocus(x: Save, d: string) {
-  x.ci[d] = (x.ci[d] ?? 0) + 1;
-  trim(x.ci, 120);
-}

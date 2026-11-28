@@ -48,6 +48,7 @@ const PATHS: Record<string, string> = {
   french: 'M4 5h16v11H9l-5 4V5zM8 9h8M8 12h5',
   quests: 'M5 4h14v16H5zM9 12l2 2 4-4',
   more: 'M5 12h.01M12 12h.01M19 12h.01',
+  sound: 'M4 9h4l5-4v14l-5-4H4zM16 9a3.5 3.5 0 0 1 0 6M18.5 6a7.5 7.5 0 0 1 0 12',
   flame: 'M12 3c1 4 5 5 5 10a5 5 0 0 1-10 0c0-3 2-4 2-7 1.5 1 2.5 2.5 3 4 .5-2 0-4 0-7z',
   lock: 'M7 11V8a5 5 0 0 1 10 0v3M5 11h14v10H5z',
   moon: 'M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z',

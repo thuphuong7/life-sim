@@ -106,7 +106,7 @@ export function lastScore(s: Save, k: TestId) {
 
 export function achievements(s: Save) {
   const h = frHours(s), t = sumTeer(s), best = bestStreak(s);
-  const focus = total(Object.values(s.ci));
+  const mature = Object.values(s.pc.cards).filter((c) => c.st === 'review' && c.ivl >= 21).length;
   const b1 = GRAMMAR.filter((g) => g.lv === 'B1').every((g) => (s.fr.g[g.id]?.s ?? 0) >= 2);
   const f = Math.floor;
   return [
@@ -120,7 +120,7 @@ export function achievements(s: Save) {
     { n: 'Đề thi thử đầu tiên', d: 'Ghi điểm 1 đề thử', on: s.fr.mocks.length > 0 },
     { n: 'NCLC 7 trong đề thử', d: 'Cả 4 phần trong cùng 1 đề', on: s.fr.mocks.some((m) => (mockMin(m) ?? 0) >= 7) },
     { n: 'Tuần hoàn hảo', d: '5/5 thử thách trong 1 tuần', on: Object.values(s.fr.ch).some((l) => l.length >= 5) },
-    { n: 'Không lướt 50 lần', d: `${Math.min(focus, 50)}/50 lần`, on: focus >= 50 },
+    { n: 'Thuộc 50 cụm từ', d: `${Math.min(mature, 50)}/50 cụm, ôn cách nhau từ 21 ngày`, on: mature >= 50 },
     { n: '100 giờ lò bánh', d: `${f(Math.min(t, 100))}/100 giờ`, on: t >= 100 },
     { n: 'Nửa đường CEC', d: `${f(Math.min(t, 780))}/780 giờ`, on: t >= 780 },
   ];

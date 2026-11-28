@@ -64,7 +64,7 @@ const WEB_URL = 'https://thuphuong7.github.io/life-sim/';
 
 function Phone() {
   const base = __ARTIFACT__ ? WEB_URL : location.href.split('#')[0];
-  const focus = `${base}#focus`;
+  const card = `${base}#phrase`;
   const [copied, setCopied] = useState('');
   const copy = async (u: string) => {
     try { await navigator.clipboard.writeText(u); setCopied('Đã chép link.'); } catch { setCopied('Trình duyệt chặn chép; bấm giữ vào link để chép tay.'); }
@@ -73,26 +73,42 @@ function Phone() {
     <div className="gmgrid">
       <div>
         <h3 className="first">Đưa app ra màn hình chính</h3>
-        <p><b>iPhone</b>, dùng app Phím tắt để icon mở bằng Safari, chung dữ liệu với pop-up:</p>
+        <p><b>Android</b>: mở link app bằng Chrome → menu ⋮ → <b>Cài đặt ứng dụng</b> (Install app). App mở toàn màn hình và chạy được khi offline.</p>
+        <p><b>iPhone</b>, dùng app Phím tắt để icon mở bằng Safari:</p>
         <ol className="steps">
           <li>Phím tắt (Shortcuts) → <b>+</b> → thêm tác vụ <b>Mở URL</b> (Open URLs) với link app bên dưới, đặt tên “Life Sim”.</li>
           <li>Mở menu của phím tắt → <b>Thêm vào MH chính</b> (Add to Home Screen).</li>
-          <li>Muốn widget: giữ màn hình chính → <b>+</b> → <b>Phím tắt</b> → chọn ô Life Sim.</li>
         </ol>
-        <p><b>Android</b>: mở link app bằng Chrome → menu ⋮ → <b>Cài đặt ứng dụng</b> (Install app). App mở toàn màn hình và chạy được khi offline.</p>
         <p className="small">Web app không làm được widget hiện số liệu như app thật; widget ở đây là một nút mở nhanh.</p>
       </div>
       <div>
-        <h3 className="first">Pop-up “Có việc gấp không?”</h3>
-        <p><b>iPhone</b>: Phím tắt → Tự động hoá (Automation) → <b>+</b> → Ứng dụng (App) → chọn các app hay lướt → <b>Được mở</b> + <b>Chạy ngay lập tức</b> → tác vụ <b>Chọn từ menu</b> “Có việc gấp không?” với hai mục; dưới “Không gấp” thêm <b>Mở URL</b> với link tập trung.</p>
-        <p><b>Android</b>: MacroDroid → trigger <b>Screen Unlocked</b> → action <b>If Confirmed Then</b> (“Có việc gấp không?”) → bên trong thêm <b>Open Website</b> với link tập trung.</p>
-        <p className="small">iPhone không có trigger mở khoá màn hình nên pop-up bật khi mở các app đã chọn.</p>
+        <h3 className="first">Thẻ cụm từ mỗi lần mở khoá máy</h3>
+        <p><b>Android</b>, dùng app MacroDroid (miễn phí):</p>
+        <ol className="steps">
+          <li>MacroDroid → <b>Thêm macro</b> (Add Macro).</li>
+          <li>Trigger: <b>Device Events</b> → <b>Screen Unlocked</b> (mở khoá màn hình).</li>
+          <li>Action: <b>Applications</b> → <b>Open Website</b> → dán link thẻ bên dưới. Không chọn “HTTP GET (No web browser)”.</li>
+          <li>Nếu muốn: thêm Constraint <b>Time of Day</b> 6:00–21:00 để đêm khuya không bật.</li>
+          <li>Đặt tên “Cụm từ tiếng Pháp” rồi lưu.</li>
+        </ol>
+        <p><b>iPhone</b> không có trigger mở khoá: Phím tắt → Tự động hoá → <b>+</b> → Ứng dụng → chọn các app hay lướt → <b>Được mở</b> + <b>Chạy ngay lập tức</b> → tác vụ <b>Mở URL</b> với link thẻ.</p>
+        <p className="small">Mỗi lần mở máy hiện 1 thẻ: thẻ đến hạn ôn trước, rồi cụm mới (tối đa theo cài đặt), hết thì ôn thêm. Bấm Để sau hoặc nút quay lại là đóng.</p>
+      </div>
+      <div>
+        <h3 className="first">Giọng đọc tiếng Pháp</h3>
+        <p>App đọc bằng giọng có sẵn trên máy. Bấm Nghe mà không có tiếng, hoặc nghe ra giọng Anh, thì cài giọng Pháp:</p>
+        <ol className="steps">
+          <li>Cài đặt → <b>Quản lý chung</b> → <b>Chuyển văn bản thành giọng nói</b> (Text-to-speech).</li>
+          <li>Công cụ ưu tiên: <b>Dịch vụ lời nói của Google</b> (Speech Services by Google).</li>
+          <li>Bấm bánh răng → <b>Cài đặt dữ liệu giọng nói</b> → tải <b>Français (France)</b>, thêm <b>Français (Canada)</b> nếu muốn giọng Québec.</li>
+        </ol>
+        <p className="small">Chọn giọng Pháp hay Canada ở tab Tiếng Pháp → Cụm từ.</p>
       </div>
       <div className="span-all">
         <p>Link app: <code>{base}</code> <button type="button" className="btn ghost sm" onClick={() => copy(base)}>Chép</button></p>
-        <p>Link tập trung: <code>{focus}</code> <button type="button" className="btn ghost sm" onClick={() => copy(focus)}>Chép</button></p>
+        <p>Link thẻ cụm từ: <code>{card}</code> <button type="button" className="btn ghost sm" onClick={() => copy(card)}>Chép</button></p>
         {copied && <p className="small" role="status">{copied}</p>}
-        <p className="small">Bản này lưu dữ liệu ngay trên điện thoại nên mở là có, không phải tải lại. Thỉnh thoảng vào Sao lưu → Chép dữ liệu để cất một bản phòng khi xoá app.</p>
+        <p className="small">Bản này lưu dữ liệu ngay trên điện thoại nên mở là có, không phải tải lại. Thỉnh thoảng vào Sao lưu → Chép dữ liệu để cất một bản phòng khi xoá app. Link cũ có #focus hoặc #checkin giờ cũng mở thẻ cụm từ.</p>
       </div>
     </div>
   );
@@ -205,8 +221,8 @@ export function More({ s, update, replace, sync }: { s: Save; update: Update; re
       </section>
       <section className="band alt" aria-labelledby="phone-h">
         <div className="wrap">
-          <h2 id="phone-h">Điện thoại: cài app và pop-up</h2>
-          <p className="lead">Cài bản web lên màn hình chính để mở như app thật, dữ liệu lưu ngay trên máy. Pop-up hỏi “Có việc gấp không?” mỗi lần bạn định lướt.</p>
+          <h2 id="phone-h">Điện thoại: cài app và thẻ cụm từ</h2>
+          <p className="lead">Cài bản web lên màn hình chính để mở như app thật, dữ liệu lưu ngay trên máy. Mỗi lần mở khoá máy, một thẻ cụm từ tiếng Pháp bật lên.</p>
           <Phone />
         </div>
       </section>

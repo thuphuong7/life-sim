@@ -1,4 +1,4 @@
-import type { Entry, Save, Skill } from '../types';
+import type { Entry, PCard, Save, Skill } from '../types';
 import { DEFAULT_SET, QUESTS, WEEK } from '../data/plan';
 import { CHALLENGES } from '../data/french';
 import { today } from './dates';
@@ -23,9 +23,15 @@ export const blank = (): Save => ({
   fr: { g: {}, v: {}, err: [], mocks: [], ch: {}, days: {}, blk: {}, imm: {}, base: '' },
   set: { ...DEFAULT_SET },
   ci: {},
+  pc: { cards: {}, days: {} },
   hist: [],
   updated: '',
 });
+
+const validCard = (c: unknown): c is PCard => {
+  const x = c as PCard;
+  return !!x && ['learn', 'review', 'relearn'].includes(x.st) && [x.due, x.ivl, x.ease, x.step, x.reps, x.lapses, x.last].every((n) => typeof n === 'number' && Number.isFinite(n));
+};
 
 const validEntry = (e: unknown): e is Entry => {
   const x = e as Entry;
@@ -82,8 +88,13 @@ export function migrate(raw: unknown): Save {
     set: {
       teerPlan: num(set.teerPlan, b.set.teerPlan), frPlan: num(set.frPlan, b.set.frPlan), frNeed: num(set.frNeed, b.set.frNeed),
       saved: num(set.saved, 0), monthly: num(set.monthly, 0), rate: num(set.rate, 0),
+      pNew: Math.min(10, Math.max(1, Math.round(num(set.pNew, b.set.pNew)))),
     },
     ci: obj(r.ci),
+    pc: {
+      cards: Object.fromEntries(Object.entries(obj(obj(r.pc).cards)).filter(([, c]) => validCard(c)).map(([k, c]) => [k, { ...(c as PCard), first: String((c as PCard).first ?? '') }])),
+      days: Object.fromEntries(Object.entries(obj(obj(r.pc).days)).filter(([k, v]) => /^\d{4}-\d{2}-\d{2}$/.test(k) && v && typeof v === 'object').map(([k, v]) => [k, { n: Number((v as { n: unknown }).n) || 0, r: Number((v as { r: unknown }).r) || 0 }])),
+    },
     hist: [],
     updated: typeof r.updated === 'string' ? r.updated : '',
   };
